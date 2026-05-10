@@ -1,0 +1,7 @@
+AGENTS.md
+node_modules
+.next
+out
+public/*.png
+preview-screenshots
+.chrome-profile*
