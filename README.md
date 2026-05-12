@@ -1,6 +1,6 @@
 # Personal Website
 
-A polished, static-first personal website built with Next.js App Router, TypeScript, and Tailwind CSS. The current content is intentionally placeholder-based so it can be replaced safely without inventing personal details.
+A polished, static-first personal website for Wang Jiawei, built with Next.js App Router, TypeScript, and Tailwind CSS. Core profile, education, project, skill, and experience content lives in a simple local content file so it can be edited without changing page structure.
 
 ## Tech Stack
 
@@ -42,13 +42,13 @@ npm run format:check
 Most public content lives in `content/site.ts`:
 
 - Name, headline, intro, bio, email, and social links
+- Education entries
 - Navigation labels
 - Skills and tools
 - Project cards
 - Experience timeline entries
-- Writing or note cards
 
-The placeholder values are clearly marked. Replace them with real public information when you are ready. Do not add private phone numbers, home addresses, government IDs, passwords, API keys, or sensitive employment details.
+Project-specific links are intentionally omitted where no public URL has been provided. Do not add private phone numbers, home addresses, government IDs, passwords, API keys, or sensitive employment details.
 
 Visual and layout files:
 
@@ -68,9 +68,8 @@ This project is ready for Vercel:
 
 ## Content Roadmap
 
-Good next steps after replacing placeholders:
+Good next steps:
 
 - Add real project case studies with outcomes and screenshots.
-- Replace placeholder note cards with MDX-backed writing.
 - Add a real Open Graph image once the site identity is final.
 - Review contrast, keyboard navigation, and mobile spacing after real content is added.

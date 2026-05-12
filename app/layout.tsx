@@ -4,7 +4,7 @@ import { profile } from "@/content/site";
 import "./globals.css";
 
 const description =
-  "A polished personal website for [YOUR NAME] with placeholder projects, experience, writing, and contact links.";
+  "A portfolio for Wang Jiawei, a NUS Computer Engineering student focused on workflow automation, embedded systems, robotics, and AI projects.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://example.com"),

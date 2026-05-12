@@ -1,6 +1,12 @@
 import { LinkButton } from "@/components/link-button";
 import { SectionHeading } from "@/components/section-heading";
-import { experience, notes, profile, projects, skills } from "@/content/site";
+import {
+  education,
+  experience,
+  profile,
+  projects,
+  skills,
+} from "@/content/site";
 
 function ExternalTextLink({
   href,
@@ -36,7 +42,7 @@ export default function Home() {
         <div className="mx-auto flex min-h-[88svh] w-full max-w-7xl flex-col justify-end px-5 pb-12 pt-24 md:px-8 md:pb-16 lg:px-10">
           <div className="hero-measure w-full">
             <p className="text-sm font-semibold uppercase text-accent">
-              Placeholder personal website
+              Computer Engineering Portfolio
             </p>
             <h1
               id="hero-title"
@@ -65,9 +71,9 @@ export default function Home() {
           </div>
           <dl className="mt-14 grid max-w-4xl gap-4 border-t border-line pt-6 sm:grid-cols-3">
             {[
-              ["Focus", "Selected work"],
-              ["Content", "Clearly marked placeholders"],
-              ["Structure", "Easy local edits"],
+              ["Current", "MPA automation intern"],
+              ["Study", "NUS Computer Engineering"],
+              ["Focus", "Embedded systems, robotics & AI"],
             ].map(([label, value]) => (
               <div key={label}>
                 <dt className="text-xs font-semibold uppercase text-muted">
@@ -90,12 +96,49 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-12 px-5 md:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:px-10">
           <SectionHeading
             eyebrow="About"
-            title="A concise professional snapshot."
-            intro="This section is intentionally simple: replace the placeholder bio, then tune the skills and current focus to match your real work."
+            title="Building across software, hardware, and workflows."
+            intro="A resume-backed snapshot of my studies, practical systems work, and the tools I use across automation, embedded engineering, and web development."
             id="about-title"
           />
           <div className="space-y-10">
             <p className="text-lg leading-9 text-foreground">{profile.bio}</p>
+            <div>
+              <h3 className="text-base font-semibold text-foreground">
+                Education
+              </h3>
+              <ul className="mt-5 space-y-4">
+                {education.map((item) => (
+                  <li
+                    key={`${item.degree}-${item.institution}`}
+                    className="rounded-[8px] border border-line bg-panel p-4"
+                  >
+                    <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+                      <h4 className="text-base font-semibold text-foreground">
+                        {item.degree}
+                      </h4>
+                      <p className="text-sm font-semibold text-accent-warm">
+                        {item.period}
+                      </p>
+                    </div>
+                    <p className="mt-2 text-sm font-semibold text-muted">
+                      {item.institution}
+                    </p>
+                    {item.details.length > 0 ? (
+                      <ul className="mt-4 flex flex-wrap gap-2">
+                        {item.details.map((detail) => (
+                          <li
+                            key={detail}
+                            className="rounded-md bg-background px-2.5 py-1 text-xs font-semibold text-muted"
+                          >
+                            {detail}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </li>
+                ))}
+              </ul>
+            </div>
             <div>
               <h3 className="text-base font-semibold text-foreground">
                 Skills and tools
@@ -129,8 +172,8 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-5 md:px-8 lg:px-10">
           <SectionHeading
             eyebrow="Projects"
-            title="Selected work, ready for real case studies."
-            intro="Each card is placeholder content with editable links and technology labels. Keep the structure, then replace the copy with true project details."
+            title="Selected technical projects."
+            intro="A compact view of project work from FPGA systems, AI web development, and robotics. Project-specific links can be added in the local content file when they are ready to publish."
             id="projects-title"
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -144,7 +187,7 @@ export default function Home() {
                     {project.title}
                   </h3>
                   <span className="shrink-0 rounded-md border border-accent/35 px-2.5 py-1 text-xs font-semibold text-accent">
-                    Placeholder
+                    {project.period}
                   </span>
                 </div>
                 <p className="mt-4 flex-1 leading-8 text-muted">
@@ -163,20 +206,19 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-7 flex flex-wrap gap-4 text-sm">
-                  <ExternalTextLink
-                    href={project.githubUrl}
-                    ariaLabel={`Open GitHub placeholder for ${project.title}`}
-                  >
-                    GitHub
-                  </ExternalTextLink>
-                  <ExternalTextLink
-                    href={project.liveUrl}
-                    ariaLabel={`Open live demo placeholder for ${project.title}`}
-                  >
-                    Live demo
-                  </ExternalTextLink>
-                </div>
+                {project.links.length > 0 ? (
+                  <div className="mt-7 flex flex-wrap gap-4 text-sm">
+                    {project.links.map((link) => (
+                      <ExternalTextLink
+                        key={link.href}
+                        href={link.href}
+                        ariaLabel={link.ariaLabel}
+                      >
+                        {link.label}
+                      </ExternalTextLink>
+                    ))}
+                  </div>
+                ) : null}
               </article>
             ))}
           </div>
@@ -191,8 +233,8 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-12 px-5 md:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:px-10">
           <SectionHeading
             eyebrow="Experience"
-            title="A timeline that is easy to edit."
-            intro="Use these placeholder entries as a public-safe structure for roles, independent work, education, or community contributions."
+            title="Roles with practical systems work."
+            intro="Recent experience across workflow automation, embedded health technology research, and campus leadership."
             id="experience-title"
           />
           <ol className="relative space-y-8 border-l border-line pl-6">
@@ -210,49 +252,20 @@ export default function Home() {
                     {item.organization}
                   </p>
                   <p className="mt-4 leading-8 text-muted">{item.summary}</p>
+                  <ul className="mt-4 space-y-2 text-sm leading-7 text-muted">
+                    {item.highlights.map((highlight) => (
+                      <li key={highlight} className="pl-4">
+                        <span className="-ml-4 mr-2 text-accent" aria-hidden>
+                          /
+                        </span>
+                        {highlight}
+                      </li>
+                    ))}
+                  </ul>
                 </article>
               </li>
             ))}
           </ol>
-        </div>
-      </section>
-
-      <section
-        id="notes"
-        className="border-b border-line bg-panel/55 py-20 md:py-28"
-        aria-labelledby="notes-title"
-      >
-        <div className="mx-auto max-w-7xl px-5 md:px-8 lg:px-10">
-          <SectionHeading
-            eyebrow="Writing"
-            title="Notes and essays can grow here."
-            intro="This is a static placeholder list. The data shape is small enough to extend later with MDX without introducing a CMS now."
-            id="notes-title"
-          />
-          <div className="mt-12 grid gap-5 lg:grid-cols-3">
-            {notes.map((note) => (
-              <article
-                key={note.title}
-                className="rounded-[8px] border border-line bg-background p-6"
-              >
-                <p className="text-sm font-semibold text-accent-rose">
-                  {note.date}
-                </p>
-                <h3 className="mt-4 text-xl font-semibold text-foreground">
-                  {note.title}
-                </h3>
-                <p className="mt-4 leading-8 text-muted">{note.excerpt}</p>
-                <div className="mt-6 text-sm">
-                  <ExternalTextLink
-                    href={note.href}
-                    ariaLabel={`Read ${note.title}`}
-                  >
-                    Read note
-                  </ExternalTextLink>
-                </div>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -265,7 +278,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Contact"
             title="Start with a simple hello."
-            intro="No forms, no backend, no stored secrets. Replace the placeholder email and social links when real public contact details are ready."
+            intro="No forms, no backend, no stored secrets. Reach me by email or through the public GitHub and LinkedIn profiles listed here."
             id="contact-title"
           />
           <div className="flex flex-col justify-center gap-6">
