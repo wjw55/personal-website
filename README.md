@@ -1,6 +1,6 @@
-# Personal Website
+# Wang Jiawei Portfolio
 
-A polished, static-first personal website for Wang Jiawei, built with Next.js App Router, TypeScript, and Tailwind CSS. Core profile, education, project, skill, and experience content lives in a simple local content file so it can be edited without changing page structure.
+A polished, static-first portfolio for Wang Jiawei, a NUS Computer Engineering student focused on embedded systems, robotics, AI, workflow automation, FPGA systems, and product-minded engineering. Core profile, project, education, skill, and experience content lives in a simple local content file so it can be edited without changing page structure.
 
 ## Tech Stack
 
@@ -26,6 +26,12 @@ npm run dev
 
 Open `http://localhost:3000` in your browser.
 
+If PowerShell blocks `npm` scripts on Windows, use `npm.cmd` instead:
+
+```bash
+npm.cmd run dev
+```
+
 ## Available Scripts
 
 ```bash
@@ -41,14 +47,14 @@ npm run format:check
 
 Most public content lives in `content/site.ts`:
 
-- Name, headline, intro, bio, email, and social links
+- Name, headline, value proposition, about copy, email, and social links
 - Education entries
 - Navigation labels
 - Skills and tools
-- Project cards
+- Project case studies
 - Experience timeline entries
 
-Project-specific links are intentionally omitted where no public URL has been provided. Do not add private phone numbers, home addresses, government IDs, passwords, API keys, or sensitive employment details.
+To update project links, edit each project's `links` array in `content/site.ts`. Add public GitHub or live demo URLs only when they are ready to share. If a project has no public URL, keep `linkNote` set to a clear status such as `Private / case study coming soon`.
 
 Visual and layout files:
 
@@ -56,6 +62,11 @@ Visual and layout files:
 - `app/globals.css` contains global theme tokens and base styles.
 - `components/` contains small reusable presentation components.
 - `public/portfolio-signal.png` is the abstract hero and social preview image.
+- `public/favicon.svg` is the site icon.
+
+## Privacy
+
+Do not commit private phone numbers, home addresses, dates of birth, government IDs, passwords, API keys, private employment details, unpublished confidential workflow details, or other sensitive personal information.
 
 ## Deployment
 
@@ -65,11 +76,13 @@ This project is ready for Vercel:
 2. Import the project in Vercel.
 3. Use the default Next.js build settings.
 4. Replace `metadataBase` in `app/layout.tsx` with the production URL before launch.
+5. Run `npm run build` locally before deployment.
 
 ## Content Roadmap
 
 Good next steps:
 
-- Add real project case studies with outcomes and screenshots.
-- Add a real Open Graph image once the site identity is final.
+- Add screenshots or short walkthroughs for public projects.
+- Add live demo links where projects are safely publishable.
+- Replace `metadataBase` with the production URL after deployment.
 - Review contrast, keyboard navigation, and mobile spacing after real content is added.
