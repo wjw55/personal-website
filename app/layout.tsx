@@ -4,35 +4,49 @@ import { profile } from "@/content/site";
 import "./globals.css";
 
 const description =
-  "A portfolio for Wang Jiawei, a NUS Computer Engineering student focused on workflow automation, embedded systems, robotics, and AI projects.";
+  "Wang Jiawei is a NUS Computer Engineering student building practical systems across embedded hardware, robotics, AI, FPGA design, and workflow automation.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://example.com"),
   title: {
-    default: `${profile.name} | Personal Website`,
+    default: `${profile.name} | Computer Engineering Portfolio`,
     template: `%s | ${profile.name}`,
   },
   description,
-  applicationName: `${profile.name} Personal Website`,
+  applicationName: `${profile.name} Portfolio`,
   authors: [{ name: profile.name }],
+  creator: profile.name,
+  keywords: [
+    "Wang Jiawei",
+    "Computer Engineering",
+    "NUS",
+    "Embedded Systems",
+    "Robotics",
+    "FPGA",
+    "Workflow Automation",
+    "AI Projects",
+  ],
+  icons: {
+    icon: "/favicon.svg",
+  },
   openGraph: {
-    title: `${profile.name} | Personal Website`,
+    title: `${profile.name} | Computer Engineering Portfolio`,
     description,
     url: "/",
-    siteName: `${profile.name} Personal Website`,
+    siteName: `${profile.name} Portfolio`,
     type: "website",
     images: [
       {
         url: "/portfolio-signal.png",
         width: 1600,
         height: 900,
-        alt: "Abstract portfolio preview artwork",
+        alt: "Abstract portfolio preview artwork for Wang Jiawei",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} | Personal Website`,
+    title: `${profile.name} | Computer Engineering Portfolio`,
     description,
     images: ["/portfolio-signal.png"],
   },

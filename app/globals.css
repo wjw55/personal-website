@@ -32,7 +32,6 @@
 
 html {
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -72,23 +71,35 @@ body {
   transform: translateY(0);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 .hero-art {
   background-image: url("/portfolio-signal.png");
   background-position: center;
   background-size: cover;
 }
 
-.hero-measure,
-.hero-actions {
-  max-width: min(22rem, calc(100vw - 2.5rem));
+.clean-list {
+  list-style: none;
+  padding-left: 0;
 }
 
-@media (min-width: 640px) {
-  .hero-measure {
-    max-width: 56rem;
-  }
+.clean-list li {
+  position: relative;
+  padding-left: 1.25rem;
+}
 
-  .hero-actions {
-    max-width: none;
-  }
+.clean-list li::before {
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  height: 0.42rem;
+  width: 0.42rem;
+  border-radius: 999px;
+  background: rgb(var(--accent));
+  content: "";
 }
