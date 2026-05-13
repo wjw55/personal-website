@@ -24,7 +24,8 @@ Thumbs.db
 .vscode
 
 # local preview artifacts
-dev-server.log
-dev-server.err.log
+dev-server*.log
+dev-server*.err.log
 preview-screenshots
 .chrome-profile*
+.chrome-*
