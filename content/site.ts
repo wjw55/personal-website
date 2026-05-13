@@ -57,6 +57,44 @@ export const skills = [
   "Linux/Unix",
 ] as const;
 
+export const skillGroups = [
+  {
+    title: "Embedded & Hardware",
+    skills: [
+      "C/C++",
+      "Verilog (HDL)",
+      "FPGA design",
+      "Arduino",
+      "Raspberry Pi",
+      "STM32",
+      "ESP32",
+      "PCB design",
+    ],
+  },
+  {
+    title: "Software & AI",
+    skills: [
+      "Python",
+      "JavaScript",
+      "React",
+      "Next.js",
+      "Node.js",
+      "Firebase",
+      "OpenAI API",
+      "Git/GitHub",
+      "Linux/Unix",
+    ],
+  },
+  {
+    title: "Product & Workflow",
+    skills: [
+      "Workflow automation",
+      "UI/UX prototyping",
+      "Requirements gathering",
+    ],
+  },
+] as const;
+
 export const education = [
   {
     degree: "B.Eng. in Computer Engineering",
@@ -77,6 +115,8 @@ export const projects = [
     title: "FPGA-Based Multifunctional Calculator",
     period: "Sep 2025 - Nov 2025",
     category: "FPGA systems",
+    summary:
+      "A constrained hardware calculator with OLED and mouse input, designed around FPGA logic rather than a general-purpose runtime.",
     problem:
       "Explore how a hardware-based calculator can support multiple interaction modes and computation types on a constrained FPGA platform.",
     built:
@@ -94,6 +134,8 @@ export const projects = [
     title: "OPTIMEAL: AI-Powered Meal Planning Web App",
     period: "May 2025 - Aug 2025",
     category: "AI web app",
+    summary:
+      "A Next.js meal-planning app that brings recipes, preferences, grocery flows, and AI-assisted generation into one dashboard.",
     problem:
       "Make meal planning less fragmented by combining recipe ideas, grocery planning, and user preferences in one web experience.",
     built:
@@ -110,13 +152,20 @@ export const projects = [
         href: "https://github.com/wjw55/optimeal",
         ariaLabel: "Open the OPTIMEAL GitHub repository",
       },
+      {
+        label: "Live demo",
+        href: "https://www.youtube.com/watch?v=mWeizcfdlIQ",
+        ariaLabel: "Open the OPTIMEAL live demo in a new tab",
+      },
     ],
-    linkNote: "Live demo not published",
+    linkNote: "Video walkthrough available",
   },
   {
     title: "SLAM-Based Autonomous Rescue Robot",
     period: "Jan 2025 - May 2025",
     category: "Robotics",
+    summary:
+      "A rescue robot prototype coordinating Raspberry Pi, Arduino, SLAM navigation, sensing, and extraction behavior.",
     problem:
       "Coordinate sensing, navigation, and remote operation for a rescue robot working in a simulated lunar environment.",
     built:

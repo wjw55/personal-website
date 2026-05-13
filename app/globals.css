@@ -3,26 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --background: 248 250 252;
-  --foreground: 20 22 22;
-  --muted: 92 101 105;
+  --background: 247 249 248;
+  --foreground: 18 23 24;
+  --muted: 86 97 101;
   --panel: 255 255 255;
-  --line: 217 225 229;
-  --accent: 13 121 112;
-  --accent-warm: 184 102 18;
-  --accent-rose: 165 65 92;
+  --line: 214 224 225;
+  --accent: 10 126 116;
+  --accent-warm: 178 98 22;
+  --accent-rose: 164 67 92;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: 16 17 17;
-    --foreground: 235 241 239;
-    --muted: 168 177 174;
-    --panel: 25 27 27;
-    --line: 50 58 56;
-    --accent: 75 201 188;
-    --accent-warm: 244 166 80;
-    --accent-rose: 231 126 156;
+    --background: 13 17 18;
+    --foreground: 235 242 240;
+    --muted: 164 176 175;
+    --panel: 22 28 29;
+    --line: 48 59 60;
+    --accent: 80 207 194;
+    --accent-warm: 244 166 81;
+    --accent-rose: 232 128 157;
   }
 }
 
@@ -32,12 +32,24 @@
 
 html {
   overflow-x: hidden;
+  scroll-padding-top: 5rem;
 }
 
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  background: rgb(var(--background));
+  background:
+    radial-gradient(
+      circle at 12% -10%,
+      rgb(var(--accent) / 0.12),
+      transparent 28rem
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgb(var(--accent-warm) / 0.09),
+      transparent 26rem
+    ),
+    rgb(var(--background));
   color: rgb(var(--foreground));
   font-family:
     Inter,
@@ -77,10 +89,68 @@ body {
   }
 }
 
-.hero-art {
+.hero-shell {
+  background:
+    radial-gradient(
+      circle at 18% 18%,
+      rgb(var(--accent) / 0.18),
+      transparent 24rem
+    ),
+    radial-gradient(
+      circle at 86% 12%,
+      rgb(var(--accent-warm) / 0.14),
+      transparent 24rem
+    ),
+    linear-gradient(
+      135deg,
+      rgb(var(--background)) 0%,
+      rgb(var(--panel) / 0.72) 52%,
+      rgb(var(--background)) 100%
+    );
+}
+
+.hero-shell::before {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
   background-image: url("/portfolio-signal.png");
   background-position: center;
   background-size: cover;
+  content: "";
+  opacity: 0.07;
+}
+
+.hero-shell::after,
+.section-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgb(var(--line) / 0.55) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--line) / 0.55) 1px, transparent 1px);
+  background-size: 44px 44px;
+  content: "";
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    black 16%,
+    black 70%,
+    transparent 100%
+  );
+  opacity: 0.36;
+  z-index: -1;
+}
+
+.section-grid {
+  z-index: 0;
+  opacity: 0.26;
+}
+
+.system-panel {
+  background-image:
+    linear-gradient(rgb(var(--line) / 0.38) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--line) / 0.38) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 .clean-list {
@@ -102,4 +172,27 @@ body {
   border-radius: 999px;
   background: rgb(var(--accent));
   content: "";
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-shell::before {
+    opacity: 0.12;
+    mix-blend-mode: screen;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hover\:-translate-y-1:hover,
+  .hover\:-translate-y-0\.5:hover {
+    transform: none !important;
+  }
 }
