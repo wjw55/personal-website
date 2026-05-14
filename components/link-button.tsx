@@ -17,8 +17,13 @@ export function LinkButton({
   className = "",
   variant = "primary",
   children,
+  href,
+  target,
+  rel,
   ...props
 }: LinkButtonProps) {
+  const isExternal = href?.startsWith("http");
+
   return (
     <a
       className={[
@@ -26,6 +31,9 @@ export function LinkButton({
         variants[variant],
         className,
       ].join(" ")}
+      href={href}
+      target={target ?? (isExternal ? "_blank" : undefined)}
+      rel={rel ?? (isExternal ? "noopener noreferrer" : undefined)}
       {...props}
     >
       {children}

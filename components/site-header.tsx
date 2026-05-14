@@ -24,12 +24,32 @@ export function SiteHeader() {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="block rounded-full px-3 py-2 text-xs font-semibold text-muted transition duration-200 hover:bg-panel hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:text-sm"
+                  className="group relative block rounded-full px-3 py-2 text-xs font-semibold text-muted transition duration-200 hover:bg-accent/10 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:text-sm"
                 >
                   {item.label}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-3 bottom-1 h-px scale-x-0 bg-accent transition-transform duration-200 group-hover:scale-x-100 group-focus-visible:scale-x-100"
+                  />
                 </a>
               </li>
             ))}
+            {profile.resumeHref ? (
+              <li>
+                <a
+                  href={profile.resumeHref}
+                  download
+                  className="group relative block rounded-full border border-accent/25 bg-accent/10 px-3 py-2 text-xs font-semibold text-accent transition duration-200 hover:border-accent/45 hover:bg-accent/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:text-sm"
+                  aria-label="Download Wang Jiawei's resume"
+                >
+                  Resume
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-3 bottom-1 h-px scale-x-0 bg-accent transition-transform duration-200 group-hover:scale-x-100 group-focus-visible:scale-x-100"
+                  />
+                </a>
+              </li>
+            ) : null}
           </ul>
         </nav>
       </div>

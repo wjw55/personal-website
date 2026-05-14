@@ -4,26 +4,58 @@ type ProjectLink = {
   ariaLabel: string;
 };
 
+type ProjectCaseStudyItem = {
+  label: string;
+  text: string;
+};
+
+type ProjectVisual = {
+  label: string;
+  title: string;
+  caption: string;
+};
+
+type ResumeHref = string | null;
+
 export const profile = {
   name: "Wang Jiawei",
   roleLine: "Computer Engineering student at NUS",
-  headline: "Building usable systems across hardware, software, and workflows.",
+  headline:
+    "Building embedded systems, robotics, FPGA projects, AI web apps, and workflow automation tools.",
   valueProposition:
-    "I connect embedded engineering, robotics, AI, and workflow automation to turn messy requirements into prototypes people can operate, test, and improve.",
+    "I work best where hardware, software, and messy real-world workflows meet: turning constraints into prototypes that are understandable, testable, and useful.",
   about:
-    "I am drawn to the crossover between physical systems and software interfaces: the point where sensors, circuits, algorithms, and users all have to cooperate. My best work starts with a concrete problem, then moves through fast prototypes, careful constraints, and interfaces that make the system easier to use.",
+    "I bring hardware curiosity with a product lens. I like the moment where sensors, circuits, algorithms, and interfaces have to work together clearly.",
   aboutFocus:
-    "At NUS, I am building a foundation in computer engineering while exploring embedded systems, FPGA design, robotics, AI applications, and product-minded engineering. I care about systems that are technically solid and understandable to the people who depend on them.",
+    "At NUS, I am building a computer engineering foundation while exploring embedded systems, robotics, FPGA design, AI applications, and workflow automation.",
   email: "E1398498@u.nus.edu",
   github: "https://github.com/wjw55",
   linkedin: "https://linkedin.com/in/jiawei-wang-3878a9336",
+  // TODO: add a resume PDF under public/ and set this to its public path, for example "/wang-jiawei-resume.pdf".
+  resumeHref: null as ResumeHref,
   contactIntro:
-    "Open to internship conversations, research opportunities, collaborations, and practical engineering projects.",
+    "Open to internships, research opportunities, collaborations, and practical engineering projects across embedded systems, robotics, AI tools, and automation.",
   currentStatus: {
     label: "Currently",
-    title: "Workflow Automation Intern at MPA",
-    description:
-      "Building low-code workflow automations, intake portals, and validation logic for clearer digital processes.",
+    summary:
+      "Hands-on systems work across public-sector workflow automation, wearable sensing research, and computer engineering coursework.",
+    items: [
+      {
+        label: "Internship",
+        title: "Workflow Automation Intern at MPA",
+        detail: "Low-code workflows, intake forms, validation logic",
+      },
+      {
+        label: "Research",
+        title: "Research Assistant at iHealthtech, NUS",
+        detail: "Wearable sensing, embedded modules, PCB layouts",
+      },
+      {
+        label: "Study",
+        title: "Computer Engineering student at NUS",
+        detail: "Embedded systems, robotics, FPGA, AI/web apps",
+      },
+    ],
   },
 } as const;
 
@@ -40,9 +72,10 @@ export const skills = [
   "JavaScript",
   "React",
   "Next.js",
-  "Node.js",
   "Firebase",
-  "OpenAI API",
+  "Firestore",
+  "OpenRouter",
+  "LLM API integration",
   "Verilog (HDL)",
   "FPGA design",
   "Arduino",
@@ -78,11 +111,11 @@ export const skillGroups = [
       "JavaScript",
       "React",
       "Next.js",
-      "Node.js",
       "Firebase",
-      "OpenAI API",
+      "Firestore",
+      "OpenRouter",
+      "LLM API integration",
       "Git/GitHub",
-      "Linux/Unix",
     ],
   },
   {
@@ -91,6 +124,8 @@ export const skillGroups = [
       "Workflow automation",
       "UI/UX prototyping",
       "Requirements gathering",
+      "Validation logic",
+      "Low-code workflows",
     ],
   },
 ] as const;
@@ -112,40 +147,29 @@ export const education = [
 
 export const projects = [
   {
-    title: "FPGA-Based Multifunctional Calculator",
-    period: "Sep 2025 - Nov 2025",
-    category: "FPGA systems",
-    summary:
-      "A constrained hardware calculator with OLED and mouse input, designed around FPGA logic rather than a general-purpose runtime.",
-    problem:
-      "Explore how a hardware-based calculator can support multiple interaction modes and computation types on a constrained FPGA platform.",
-    built:
-      "Implemented a Basys 3 FPGA calculator with OLED output, mouse input, arithmetic and bitwise operations, differentiation, and linear algebra functions.",
-    highlights: [
-      "Managed system-level integration across display, input, computation, and peripheral control.",
-      "Designed logic around FPGA constraints rather than relying on a general-purpose runtime.",
-      "Worked through hardware/software boundary decisions for a more interactive calculator experience.",
-    ],
-    stack: ["Verilog", "Basys 3 FPGA", "OLED", "PS/2 mouse"],
-    links: [] as ProjectLink[],
-    linkNote: "Private / case study coming soon",
-  },
-  {
     title: "OPTIMEAL: AI-Powered Meal Planning Web App",
     period: "May 2025 - Aug 2025",
     category: "AI web app",
     summary:
-      "A Next.js meal-planning app that brings recipes, preferences, grocery flows, and AI-assisted generation into one dashboard.",
-    problem:
-      "Make meal planning less fragmented by combining recipe ideas, grocery planning, and user preferences in one web experience.",
-    built:
-      "Built a Next.js app with authentication, a meal-planning dashboard, grocery list flows, and AI-assisted recipe generation.",
-    highlights: [
-      "Structured a full-stack React experience around practical planning workflows.",
-      "Integrated Firebase and server-side Node.js logic with AI generation features.",
-      "Designed dashboard and intake flows to keep the planning loop clear for users.",
-    ],
-    stack: ["React", "Next.js", "Firebase", "Node.js", "OpenAI API"],
+      "A React and Firebase meal-planning app for preference intake, AI-generated weekly plans, nutrition views, grocery lists, and saved recipes.",
+    role: "Built core web-app flows across authentication, profile preferences, meal-plan generation, grocery management, and recipe storage.",
+    challenge:
+      "Turn user profile data into reliable AI prompts, parse structured model output, and persist plans in Firebase for repeat use.",
+    caseStudy: [
+      {
+        label: "What I built",
+        text: "Auth-backed dashboard, preference intake, weekly meal-plan generation, nutrition summaries, grocery workflow, and recipe storage.",
+      },
+      {
+        label: "Constraints",
+        text: "AI responses needed strict JSON parsing, fallback handling, and a simple user flow that kept meal planning understandable.",
+      },
+      {
+        label: "Technical surface",
+        text: "React Router, Firebase Auth, Firestore, OpenRouter chat completions, and a DeepSeek R1 model.",
+      },
+    ] satisfies readonly ProjectCaseStudyItem[],
+    stack: ["React", "Firebase Auth", "Firestore", "OpenRouter", "DeepSeek R1"],
     links: [
       {
         label: "GitHub",
@@ -153,37 +177,102 @@ export const projects = [
         ariaLabel: "Open the OPTIMEAL GitHub repository",
       },
       {
-        label: "Live demo",
-        href: "https://www.youtube.com/watch?v=mWeizcfdlIQ",
-        ariaLabel: "Open the OPTIMEAL live demo in a new tab",
+        label: "Live app",
+        href: "https://optimeal-bbabb.web.app/",
+        ariaLabel: "Open the deployed OPTIMEAL app in a new tab",
       },
-    ],
-    linkNote: "Video walkthrough available",
+      {
+        label: "Video walkthrough",
+        href: "https://www.youtube.com/watch?v=mWeizcfdlIQ",
+        ariaLabel: "Open the OPTIMEAL video walkthrough in a new tab",
+      },
+    ] as ProjectLink[],
+    linkNote: "Public repo, deployed app, and walkthrough",
+    // TODO: add OPTIMEAL dashboard screenshot.
+    visual: {
+      label: "dashboard",
+      title: "AI meal planning flow",
+      caption: "Profile intake -> generated week -> grocery workflow",
+    } satisfies ProjectVisual,
+  },
+  {
+    title: "FPGA-Based Multifunctional Calculator",
+    period: "Sep 2025 - Nov 2025",
+    category: "FPGA systems",
+    summary:
+      "A constrained hardware calculator with OLED and mouse input, designed around FPGA logic rather than a general-purpose runtime.",
+    role: "Implemented the calculator logic and integrated display, input, computation, and peripheral-control surfaces on a Basys 3 FPGA.",
+    challenge:
+      "Coordinate OLED output, PS/2 mouse input, arithmetic and bitwise operations, differentiation, and linear algebra within FPGA constraints.",
+    caseStudy: [
+      {
+        label: "What I built",
+        text: "Basys 3 FPGA calculator with OLED output, mouse input, arithmetic and bitwise operations, differentiation, and linear algebra functions.",
+      },
+      {
+        label: "Constraints",
+        text: "State, UI feedback, computation, and peripheral behavior had to be handled in a hardware-centric implementation.",
+      },
+      {
+        label: "Technical surface",
+        text: "Verilog modules spanning display control, input handling, calculator state, and operation logic. Code is private.",
+      },
+    ] satisfies readonly ProjectCaseStudyItem[],
+    stack: ["Verilog", "Basys 3 FPGA", "OLED", "PS/2 mouse"],
+    links: [] as ProjectLink[],
+    linkNote: "Private code / case-study preview",
+    // TODO: add FPGA calculator architecture diagram.
+    visual: {
+      label: "architecture",
+      title: "FPGA interaction pipeline",
+      caption: "Mouse input -> control logic -> compute modules -> OLED output",
+    } satisfies ProjectVisual,
   },
   {
     title: "SLAM-Based Autonomous Rescue Robot",
     period: "Jan 2025 - May 2025",
     category: "Robotics",
     summary:
-      "A rescue robot prototype coordinating Raspberry Pi, Arduino, SLAM navigation, sensing, and extraction behavior.",
-    problem:
-      "Coordinate sensing, navigation, and remote operation for a rescue robot working in a simulated lunar environment.",
-    built:
-      "Built a Raspberry Pi and Arduino Mega robot for SLAM-based navigation, astronaut identification, and timed extraction tasks.",
-    highlights: [
-      "Programmed real-time control in C/C++ and higher-level navigation logic in Python.",
-      "Integrated serial communication across multiple sensors and controllers.",
-      "Balanced navigation, identification, and extraction behavior under tight system constraints.",
+      "A rescue robot prototype coordinating Raspberry Pi, Arduino Mega, serial communication, sensors, navigation, and extraction behavior.",
+    role: "Integrated control and navigation behavior across Raspberry Pi, Arduino Mega, sensors, and serial communication.",
+    challenge:
+      "Keep sensing, navigation, identification, and extraction behavior coordinated across separate controllers under system constraints.",
+    caseStudy: [
+      {
+        label: "What I built",
+        text: "Robot software and integration paths for SLAM-based navigation, astronaut identification, and timed extraction tasks.",
+      },
+      {
+        label: "Constraints",
+        text: "The system had to balance sensor input, serial communication, real-time control, and higher-level navigation decisions.",
+      },
+      {
+        label: "Technical surface",
+        text: "Python navigation logic, C/C++ control code, Raspberry Pi, Arduino Mega, sensors, and serial communication.",
+      },
+    ] satisfies readonly ProjectCaseStudyItem[],
+    stack: [
+      "C/C++",
+      "Python",
+      "Raspberry Pi",
+      "Arduino Mega",
+      "Serial communication",
+      "SLAM",
     ],
-    stack: ["C/C++", "Python", "Raspberry Pi", "Arduino Mega", "SLAM"],
     links: [
       {
         label: "GitHub",
         href: "https://github.com/wjw55/CG2111A_Alex",
         ariaLabel: "Open the SLAM rescue robot GitHub repository",
       },
-    ],
-    linkNote: "Case study coming soon",
+    ] as ProjectLink[],
+    linkNote: "Public repository available",
+    // TODO: add rescue robot photo.
+    visual: {
+      label: "robotics",
+      title: "Controller handoff map",
+      caption: "Sensors -> Raspberry Pi -> serial link -> Arduino Mega",
+    } satisfies ProjectVisual,
   },
 ] as const;
 
@@ -195,10 +284,10 @@ export const experience = [
     summary:
       "Building workflow automation prototypes that translate SOP-heavy processes into clearer digital request paths.",
     highlights: [
-      "Mapped manual steps into low-code workflows with explicit states, approvals, and intake rules.",
-      "Implemented conditional form behavior and server-side JavaScript validation for cleaner request routing.",
-      "Supported portal migration planning by organizing content relationships and access-role assumptions at a high level.",
-      "Worked with cross-functional teams to clarify requirements and turn business logic into proof-of-concept automations.",
+      "Translated manual intake paths into low-code workflows with explicit approval states, routing, and validation rules.",
+      "Built conditional forms and server-side JavaScript checks to make request data clearer before review.",
+      "Clarified requirements with stakeholders and converted process logic into proof-of-concept automations.",
+      "Organized portal migration assumptions around content relationships, roles, and access paths.",
     ],
   },
   {
@@ -208,9 +297,9 @@ export const experience = [
     summary:
       "Undergraduate Research Opportunities Program role focused on wearable sensing for heat stress assessment.",
     highlights: [
-      "Prototyped embedded sensing modules for wireless, multi-site data collection.",
+      "Prototyped embedded wearable sensing modules for wireless, multi-site data collection.",
       "Designed compact PCB layouts and assembled miniaturized sensor modules with microsoldering.",
-      "Integrated embedded components and wireless sensing workflows for research testing.",
+      "Integrated sensor, power, and wireless components into research prototypes for testing workflows.",
     ],
   },
   {
@@ -220,8 +309,8 @@ export const experience = [
     summary:
       "Leading training routines and representing Raffles Hall in inter-hall competition.",
     highlights: [
-      "Led weekly training sessions with consistent practice structure and preparation.",
-      "Supported team cohesion through competition planning and shared accountability.",
+      "Set weekly training structure and practice expectations for the team.",
+      "Coordinated competition preparation, communication, and shared accountability.",
     ],
   },
 ] as const;

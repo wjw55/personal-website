@@ -51,10 +51,13 @@ Most public content lives in `content/site.ts`:
 - Education entries
 - Navigation labels
 - Skills and tools
-- Project case studies
+- Project cards, case-study previews, proof links, and visual placeholder TODOs
 - Experience timeline entries
+- Resume link path, once a public resume PDF has been added
 
-To update project links, edit each project's `links` array in `content/site.ts`. Add public GitHub or live demo URLs only when they are ready to share. If a project has no public URL, keep `linkNote` set to a clear status such as `Private / case study coming soon`.
+To update project links, edit each project's `links` array in `content/site.ts`. Add public GitHub, live app, video walkthrough, or case-study URLs only when they are ready to share. If a project has no public URL, keep `linkNote` honest, such as `Private code / case-study preview`.
+
+To enable resume buttons, add a resume PDF under `public/` and set `profile.resumeHref` in `content/site.ts` to the public path. Do not link to a file that is not in the repo.
 
 Visual and layout files:
 
@@ -82,7 +85,10 @@ This project is ready for Vercel:
 
 Good next steps:
 
-- Add screenshots or short walkthroughs for public projects.
+- Add the resume PDF and wire `profile.resumeHref`.
+- Add an OPTIMEAL dashboard screenshot.
+- Add a rescue robot photo.
+- Add an FPGA calculator architecture diagram.
 - Add live demo links where projects are safely publishable.
 - Replace `metadataBase` with the production URL after deployment.
 - Review contrast, keyboard navigation, and mobile spacing after real content is added.

@@ -4,12 +4,13 @@ import { profile } from "@/content/site";
 import "./globals.css";
 
 const description =
-  "Wang Jiawei is a NUS Computer Engineering student building practical systems across embedded hardware, robotics, AI, FPGA design, and workflow automation.";
+  "Wang Jiawei — Computer Engineering student at NUS building embedded systems, robotics, AI web apps, and workflow automation tools.";
 
 export const metadata: Metadata = {
+  // TODO: replace with the production portfolio URL before launch.
   metadataBase: new URL("https://example.com"),
   title: {
-    default: `${profile.name} | Computer Engineering Portfolio`,
+    default: `${profile.name} | NUS Computer Engineering Portfolio`,
     template: `%s | ${profile.name}`,
   },
   description,
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
   },
   openGraph: {
-    title: `${profile.name} | Computer Engineering Portfolio`,
+    title: `${profile.name} | NUS Computer Engineering Portfolio`,
     description,
     url: "/",
     siteName: `${profile.name} Portfolio`,
