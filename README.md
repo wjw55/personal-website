@@ -87,8 +87,6 @@ Good next steps:
 
 - Add the resume PDF at `public/resume/Wang_Jiawei_Resume.pdf`.
 - Replace the OPTIMEAL dashboard preview with a final exported screenshot if the app UI changes again.
-- Add a rescue robot photo.
-- Add an FPGA calculator architecture diagram.
 - Add true project or experience numbers later where TODO comments mark safe places for metrics.
 - Add live demo links where projects are safely publishable.
 - Replace `metadataBase` with the production URL after deployment.

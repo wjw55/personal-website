@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { LinkButton } from "@/components/link-button";
 import { SectionHeading } from "@/components/section-heading";
 import {
@@ -268,6 +270,38 @@ function ProjectVisualPlaceholder({
     );
   }
 
+  if (project.visual.images && project.visual.images.length > 0) {
+    return (
+      <div className="grid gap-3">
+        <div className="grid gap-3">
+          {project.visual.images.map((image) => (
+            <figure
+              key={image.src}
+              className="overflow-hidden rounded-[8px] border border-line bg-background shadow-[0_18px_60px_rgb(15_23_42_/_0.07)]"
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                sizes={
+                  featured
+                    ? "(min-width: 1024px) 44vw, 100vw"
+                    : "(min-width: 1024px) 44vw, 100vw"
+                }
+                className="h-auto w-full bg-white object-contain"
+              />
+              <figcaption className="border-t border-line bg-panel/72 px-4 py-3 text-sm leading-6 text-muted">
+                {image.caption}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p className="text-sm leading-7 text-muted">{project.visual.caption}</p>
+      </div>
+    );
+  }
+
   return (
     <div
       className={[
@@ -473,7 +507,9 @@ function ProjectCard({
         </div>
 
         <div className="grid gap-5">
-          <ProjectVisualPlaceholder project={project} featured={featured} />
+          {project.title.startsWith("FPGA-Based") ? null : (
+            <ProjectVisualPlaceholder project={project} featured={featured} />
+          )}
           {project.title.includes("Rescue Robot") ? (
             <RobotSystemDiagram />
           ) : null}

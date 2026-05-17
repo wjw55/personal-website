@@ -13,6 +13,13 @@ type ProjectVisual = {
   status: string;
   title: string;
   caption: string;
+  images?: readonly {
+    src: string;
+    alt: string;
+    caption: string;
+    width: number;
+    height: number;
+  }[];
 };
 
 export const profile = {
@@ -188,6 +195,7 @@ export const projects = [
       title: "OPTIMEAL planning hub",
       caption:
         "Weekly meal-plan dashboard with nutrition targets, grocery counts, and generated plan status.",
+      images: [],
     } satisfies ProjectVisual,
   },
   {
@@ -216,12 +224,11 @@ export const projects = [
     stack: ["Verilog", "Basys 3 FPGA", "OLED", "PS/2 mouse"],
     links: [] as ProjectLink[],
     linkNote: "Private code / case-study preview",
-    // TODO: add FPGA calculator architecture diagram or hardware demo image.
     visual: {
-      status: "Hardware demo image",
-      title: "Basys 3 + OLED proof area",
-      caption:
-        "Board photo, OLED output, mouse interaction, or architecture diagram.",
+      status: "",
+      title: "",
+      caption: "",
+      images: [],
     } satisfies ProjectVisual,
   },
   {
@@ -263,11 +270,29 @@ export const projects = [
       },
     ] as ProjectLink[],
     linkNote: "Public repository available",
-    // TODO: add rescue robot photo.
     visual: {
       status: "Robot system photo",
-      title: "Robot build proof area",
-      caption: "Robot photo, wiring, sensor setup, or field-test view.",
+      title: "Robot build and system architecture",
+      caption:
+        "System architecture diagram and physical rescue robot prototype with LiDAR, Raspberry Pi, Arduino Mega, sensors, and arm mechanism.",
+      images: [
+        {
+          src: "/projects/slam-system-architecture.png",
+          alt: "SLAM rescue robot system architecture diagram showing laptop, Raspberry Pi, Arduino Mega, sensors, motors, LiDAR, and communication flows.",
+          caption:
+            "System architecture for sensing, SLAM, movement commands, and serial communication.",
+          width: 1626,
+          height: 1096,
+        },
+        {
+          src: "/projects/slam-rescue-robot.jpg",
+          alt: "Side view of the SLAM rescue robot prototype with yellow wheels, LiDAR, Raspberry Pi, Arduino Mega, sensors, wiring, and robotic arm.",
+          caption:
+            "Physical robot prototype with the LiDAR stack, controllers, wiring, drivetrain, and extraction arm assembled.",
+          width: 1280,
+          height: 960,
+        },
+      ],
     } satisfies ProjectVisual,
   },
 ] as const;
