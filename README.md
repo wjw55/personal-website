@@ -53,11 +53,11 @@ Most public content lives in `content/site.ts`:
 - Skills and tools
 - Project cards, case-study previews, proof links, and visual placeholder TODOs
 - Experience timeline entries
-- Resume link path, once a public resume PDF has been added
+- Resume link path: currently `/resume/Wang_Jiawei_Resume.pdf`
 
-To update project links, edit each project's `links` array in `content/site.ts`. Add public GitHub, live app, video walkthrough, or case-study URLs only when they are ready to share. If a project has no public URL, keep `linkNote` honest, such as `Private code / case-study preview`.
+To update project links, edit each project's `links` array in `content/site.ts`. Add public GitHub, live app, or case-study URLs only when they are ready to share. If a project has no public URL, keep `linkNote` honest, such as `Private code / case-study preview`.
 
-To enable resume buttons, add a resume PDF under `public/` and set `profile.resumeHref` in `content/site.ts` to the public path. Do not link to a file that is not in the repo.
+To make the visible Resume links work, add the PDF at `public/resume/Wang_Jiawei_Resume.pdf`, or update `profile.resumeHref` in `content/site.ts` to the final public path.
 
 Visual and layout files:
 
@@ -85,10 +85,11 @@ This project is ready for Vercel:
 
 Good next steps:
 
-- Add the resume PDF and wire `profile.resumeHref`.
-- Add an OPTIMEAL dashboard screenshot.
+- Add the resume PDF at `public/resume/Wang_Jiawei_Resume.pdf`.
+- Replace the OPTIMEAL dashboard preview with a final exported screenshot if the app UI changes again.
 - Add a rescue robot photo.
 - Add an FPGA calculator architecture diagram.
+- Add true project or experience numbers later where TODO comments mark safe places for metrics.
 - Add live demo links where projects are safely publishable.
 - Replace `metadataBase` with the production URL after deployment.
 - Review contrast, keyboard navigation, and mobile spacing after real content is added.

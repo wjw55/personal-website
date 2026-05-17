@@ -10,35 +10,34 @@ type ProjectCaseStudyItem = {
 };
 
 type ProjectVisual = {
-  label: string;
+  status: string;
   title: string;
   caption: string;
 };
 
-type ResumeHref = string | null;
-
 export const profile = {
   name: "Wang Jiawei",
+  heroGreeting: "Hi, I’m Jiawei Wang.",
   roleLine: "Computer Engineering student at NUS",
   headline:
-    "Building embedded systems, robotics, FPGA projects, AI web apps, and workflow automation tools.",
+    "Computer Engineering student building practical systems across embedded hardware, robotics, and AI-enabled software.",
   valueProposition:
-    "I work best where hardware, software, and messy real-world workflows meet: turning constraints into prototypes that are understandable, testable, and useful.",
+    "I like turning messy real-world workflows into prototypes that are understandable, testable, and useful.",
   about:
-    "I bring hardware curiosity with a product lens. I like the moment where sensors, circuits, algorithms, and interfaces have to work together clearly.",
+    "I’m interested in the places where physical systems meet software: sensors, circuits, algorithms, interfaces, and the humans trying to use them.",
   aboutFocus:
-    "At NUS, I am building a computer engineering foundation while exploring embedded systems, robotics, FPGA design, AI applications, and workflow automation.",
+    "At NUS, I’m building a computer engineering foundation while working on embedded systems, robotics, FPGA design, AI web apps, and workflow automation.",
   email: "E1398498@u.nus.edu",
   github: "https://github.com/wjw55",
   linkedin: "https://linkedin.com/in/jiawei-wang-3878a9336",
-  // TODO: add a resume PDF under public/ and set this to its public path, for example "/wang-jiawei-resume.pdf".
-  resumeHref: null as ResumeHref,
+  // TODO: add the PDF at public/resume/Wang_Jiawei_Resume.pdf.
+  resumeHref: "/resume/Wang_Jiawei_Resume.pdf",
   contactIntro:
-    "Open to internships, research opportunities, collaborations, and practical engineering projects across embedded systems, robotics, AI tools, and automation.",
+    "Open to internships, research opportunities, and practical engineering projects across embedded systems, robotics, AI tools, and workflow automation.",
   currentStatus: {
     label: "Currently",
     summary:
-      "Hands-on systems work across public-sector workflow automation, wearable sensing research, and computer engineering coursework.",
+      "Splitting my time between workflow automation, wearable sensing research, and computer engineering coursework.",
     items: [
       {
         label: "Internship",
@@ -63,6 +62,7 @@ export const navItems = [
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "About", href: "#about" },
+  { label: "Resume", href: profile.resumeHref },
   { label: "Contact", href: "#contact" },
 ] as const;
 
@@ -177,22 +177,17 @@ export const projects = [
         ariaLabel: "Open the OPTIMEAL GitHub repository",
       },
       {
-        label: "Live app",
+        label: "Live App",
         href: "https://optimeal-bbabb.web.app/",
         ariaLabel: "Open the deployed OPTIMEAL app in a new tab",
       },
-      {
-        label: "Video walkthrough",
-        href: "https://www.youtube.com/watch?v=mWeizcfdlIQ",
-        ariaLabel: "Open the OPTIMEAL video walkthrough in a new tab",
-      },
     ] as ProjectLink[],
-    linkNote: "Public repo, deployed app, and walkthrough",
-    // TODO: add OPTIMEAL dashboard screenshot.
+    linkNote: "Public repo and deployed app",
     visual: {
-      label: "dashboard",
-      title: "AI meal planning flow",
-      caption: "Profile intake -> generated week -> grocery workflow",
+      status: "Dashboard screenshot",
+      title: "OPTIMEAL planning hub",
+      caption:
+        "Weekly meal-plan dashboard with nutrition targets, grocery counts, and generated plan status.",
     } satisfies ProjectVisual,
   },
   {
@@ -221,11 +216,12 @@ export const projects = [
     stack: ["Verilog", "Basys 3 FPGA", "OLED", "PS/2 mouse"],
     links: [] as ProjectLink[],
     linkNote: "Private code / case-study preview",
-    // TODO: add FPGA calculator architecture diagram.
+    // TODO: add FPGA calculator architecture diagram or hardware demo image.
     visual: {
-      label: "architecture",
-      title: "FPGA interaction pipeline",
-      caption: "Mouse input -> control logic -> compute modules -> OLED output",
+      status: "Hardware demo image",
+      title: "Basys 3 + OLED proof area",
+      caption:
+        "Board photo, OLED output, mouse interaction, or architecture diagram.",
     } satisfies ProjectVisual,
   },
   {
@@ -269,10 +265,33 @@ export const projects = [
     linkNote: "Public repository available",
     // TODO: add rescue robot photo.
     visual: {
-      label: "robotics",
-      title: "Controller handoff map",
-      caption: "Sensors -> Raspberry Pi -> serial link -> Arduino Mega",
+      status: "Robot system photo",
+      title: "Robot build proof area",
+      caption: "Robot photo, wiring, sensor setup, or field-test view.",
     } satisfies ProjectVisual,
+  },
+] as const;
+
+export const robotSystemDiagram = [
+  {
+    label: "Sensors / LiDAR / Camera",
+    description: "Collects distance and environment data for navigation.",
+  },
+  {
+    label: "Raspberry Pi",
+    description: "Runs higher-level logic, mapping, and decision-making.",
+  },
+  {
+    label: "Serial Communication",
+    description: "Passes commands between compute and control layers.",
+  },
+  {
+    label: "Arduino Mega",
+    description: "Handles motor control and hardware actuation.",
+  },
+  {
+    label: "Motors / Arm / Dispenser",
+    description: "Executes movement, extraction, and delivery actions.",
   },
 ] as const;
 
@@ -288,6 +307,7 @@ export const experience = [
       "Built conditional forms and server-side JavaScript checks to make request data clearer before review.",
       "Clarified requirements with stakeholders and converted process logic into proof-of-concept automations.",
       "Organized portal migration assumptions around content relationships, roles, and access paths.",
+      // TODO: add true counts later, such as number of workflows, forms, approval paths, or users supported.
     ],
   },
   {
@@ -300,6 +320,7 @@ export const experience = [
       "Prototyped embedded wearable sensing modules for wireless, multi-site data collection.",
       "Designed compact PCB layouts and assembled miniaturized sensor modules with microsoldering.",
       "Integrated sensor, power, and wireless components into research prototypes for testing workflows.",
+      // TODO: add true counts later, such as number of boards, prototypes, or test iterations.
     ],
   },
   {

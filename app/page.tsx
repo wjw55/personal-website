@@ -5,10 +5,30 @@ import {
   experience,
   profile,
   projects,
+  robotSystemDiagram,
   skillGroups,
 } from "@/content/site";
 
 type Project = (typeof projects)[number];
+
+const optimealStats = [
+  { label: "Meals planned", value: "21", detail: "Breakfast, lunch, dinner" },
+  { label: "Daily calories", value: "2050", detail: "Average kcal/day" },
+  { label: "Protein target", value: "104g", detail: "Profile target" },
+] as const;
+
+const optimealMeals = [
+  ["Breakfast", "Nutty Peanut Butter Oatmeal"],
+  ["Lunch", "Chicken and Quinoa Power Bowl"],
+  ["Dinner", "Beef and Rice Stir-Fry"],
+] as const;
+
+const optimealNutrition = [
+  { label: "Calories", value: "2050 kcal", width: "93%" },
+  { label: "Protein", value: "104 g", width: "74%" },
+  { label: "Carbs", value: "179 g", width: "69%" },
+  { label: "Fats", value: "103 g", width: "100%" },
+] as const;
 
 function slugify(value: string) {
   return value
@@ -82,31 +102,16 @@ function ResumeCta({
   className?: string;
   variant?: "primary" | "secondary" | "quiet";
 }) {
-  if (profile.resumeHref) {
-    return (
-      <LinkButton
-        href={profile.resumeHref}
-        download
-        aria-label="Download Wang Jiawei's resume"
-        variant={variant}
-        className={className}
-      >
-        Download resume
-      </LinkButton>
-    );
-  }
-
   return (
-    <span
-      aria-disabled="true"
-      title="Resume PDF not added yet"
-      className={[
-        "inline-flex min-h-11 cursor-not-allowed items-center justify-center rounded-md border border-line bg-panel/62 px-5 py-2.5 text-sm font-semibold text-muted sm:whitespace-nowrap",
-        className,
-      ].join(" ")}
+    <LinkButton
+      href={profile.resumeHref}
+      download
+      aria-label="Download Wang Jiawei's resume"
+      variant={variant}
+      className={className}
     >
-      Download resume
-    </span>
+      Download Resume
+    </LinkButton>
   );
 }
 
@@ -114,7 +119,7 @@ function ProjectProofLinks({ project }: { project: Project }) {
   return (
     <div aria-label={`${project.title} proof links`}>
       <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">
-        Proof
+        Links
       </p>
       <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
         {project.links.map((link) => (
@@ -126,11 +131,124 @@ function ProjectProofLinks({ project }: { project: Project }) {
             {link.label}
           </ExternalTextLink>
         ))}
-        <span className="rounded-full border border-line bg-panel/86 px-3 py-1 text-xs font-semibold text-muted">
-          {project.linkNote}
-        </span>
+        {project.linkNote ? (
+          <span className="rounded-full border border-line bg-panel/86 px-3 py-1 text-xs font-semibold text-muted">
+            {project.linkNote}
+          </span>
+        ) : null}
       </div>
     </div>
+  );
+}
+
+function OptimealDashboardPreview() {
+  return (
+    <figure
+      className="relative overflow-hidden rounded-[8px] border border-emerald-900/10 bg-[#f4f8f6] text-[#08251f] shadow-[0_24px_70px_rgb(15_23_42_/_0.11)]"
+      aria-label="OPTIMEAL dashboard preview"
+    >
+      <div className="flex items-center justify-between border-b border-emerald-900/10 bg-white/82 px-4 py-3">
+        <span className="text-base font-extrabold tracking-tight">
+          Optimeal
+        </span>
+        <div className="hidden items-center gap-2 text-[0.62rem] font-bold sm:flex">
+          <span className="rounded-[8px] bg-emerald-50 px-2.5 py-1 text-emerald-950">
+            Dashboard
+          </span>
+          <span>Recipes</span>
+          <span>Grocery List</span>
+        </div>
+      </div>
+
+      <div className="p-4 sm:p-5">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.18em] text-emerald-700">
+              Your planning hub
+            </p>
+            <h4 className="mt-1 text-2xl font-extrabold leading-none sm:text-3xl">
+              Welcome back, antonio
+            </h4>
+          </div>
+          <span className="w-fit rounded-[8px] bg-emerald-700 px-3 py-2 text-xs font-bold text-white shadow-sm">
+            Generate My Week
+          </span>
+        </div>
+
+        <div className="mt-5 grid grid-cols-3 gap-2">
+          {optimealStats.map((stat) => (
+            <div
+              key={stat.label}
+              className="rounded-[8px] border border-emerald-900/10 bg-white p-3 text-center"
+            >
+              <p className="text-[0.58rem] font-bold text-emerald-950/80">
+                {stat.label}
+              </p>
+              <p className="mt-1 text-2xl font-extrabold leading-none">
+                {stat.value}
+              </p>
+              <p className="mt-1 hidden text-[0.62rem] leading-4 text-emerald-950/70 sm:block">
+                {stat.detail}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-3 grid gap-3 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="rounded-[8px] border border-emerald-900/10 bg-white p-4">
+            <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.16em] text-emerald-700">
+              Weekly meal plan
+            </p>
+            <div className="mt-3 rounded-[8px] border border-emerald-900/10 p-3">
+              <div className="flex items-center justify-between border-b border-emerald-900/10 pb-2">
+                <span className="font-bold">Monday</span>
+                <span className="font-extrabold text-emerald-700">
+                  2050 kcal
+                </span>
+              </div>
+              <dl className="mt-3 grid gap-2">
+                {optimealMeals.map(([label, meal]) => (
+                  <div
+                    key={label}
+                    className="grid grid-cols-[5.6rem_1fr] items-center gap-2"
+                  >
+                    <dt className="text-[0.68rem] font-bold text-emerald-950/70">
+                      {label}
+                    </dt>
+                    <dd className="text-xs font-extrabold leading-snug">
+                      {meal}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+
+          <div className="rounded-[8px] border border-emerald-900/10 bg-white p-4">
+            <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.16em] text-emerald-700">
+              Nutrition
+            </p>
+            <h5 className="mt-1 text-base font-extrabold">At a glance</h5>
+            <dl className="mt-4 grid gap-3">
+              {optimealNutrition.map((item) => (
+                <div key={item.label}>
+                  <div className="flex items-center justify-between gap-3 text-xs">
+                    <dt>{item.label}</dt>
+                    <dd className="font-extrabold">{item.value}</dd>
+                  </div>
+                  <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-emerald-950/10">
+                    <div
+                      className="h-full rounded-full bg-emerald-700"
+                      style={{ width: item.width }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </div>
+    </figure>
   );
 }
 
@@ -141,6 +259,15 @@ function ProjectVisualPlaceholder({
   project: Project;
   featured?: boolean;
 }) {
+  if (project.title.startsWith("OPTIMEAL")) {
+    return (
+      <div className="grid gap-3">
+        <OptimealDashboardPreview />
+        <p className="text-sm leading-7 text-muted">{project.visual.caption}</p>
+      </div>
+    );
+  }
+
   return (
     <div
       className={[
@@ -151,7 +278,7 @@ function ProjectVisualPlaceholder({
     >
       <div className="flex items-center justify-between gap-4">
         <span className="rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-accent">
-          {project.visual.label}
+          {project.visual.status}
         </span>
         <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_0_5px_rgb(var(--accent)_/_0.14)]" />
       </div>
@@ -202,6 +329,60 @@ function CaseStudyPreview({ project }: { project: Project }) {
         </div>
       ))}
     </dl>
+  );
+}
+
+function RobotSystemDiagram() {
+  return (
+    <section
+      className="rounded-[8px] border border-line bg-panel/78 p-5"
+      aria-labelledby="robot-system-diagram-title"
+    >
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">
+            Interactive system diagram
+          </p>
+          <h4
+            id="robot-system-diagram-title"
+            className="mt-2 text-lg font-semibold text-foreground"
+          >
+            Rescue robot control flow
+          </h4>
+        </div>
+        <p className="text-xs leading-6 text-muted">
+          Hover, focus, or tap each block.
+        </p>
+      </div>
+
+      <ol className="mt-5 grid gap-3 lg:grid-cols-5">
+        {robotSystemDiagram.map((node, index) => (
+          <li key={node.label} className="relative">
+            <details className="system-node group h-full rounded-[8px] border border-line bg-background/82 p-4 transition duration-200 hover:-translate-y-0.5 hover:border-accent/55 focus-within:border-accent">
+              <summary className="cursor-pointer rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">
+                <span className="block text-[0.65rem] font-bold uppercase tracking-[0.16em] text-accent-warm">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="mt-2 block text-sm font-semibold leading-snug text-foreground">
+                  {node.label}
+                </span>
+              </summary>
+              <p className="system-node-copy mt-3 text-sm leading-6 text-muted">
+                {node.description}
+              </p>
+            </details>
+            {index < robotSystemDiagram.length - 1 ? (
+              <span
+                className="absolute -right-3 top-1/2 hidden -translate-y-1/2 text-accent/65 lg:block"
+                aria-hidden="true"
+              >
+                -&gt;
+              </span>
+            ) : null}
+          </li>
+        ))}
+      </ol>
+    </section>
   );
 }
 
@@ -293,6 +474,9 @@ function ProjectCard({
 
         <div className="grid gap-5">
           <ProjectVisualPlaceholder project={project} featured={featured} />
+          {project.title.includes("Rescue Robot") ? (
+            <RobotSystemDiagram />
+          ) : null}
           <div>
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-accent">
               Case-study preview
@@ -397,7 +581,7 @@ export default function Home() {
                 id="hero-title"
                 className="mt-6 max-w-4xl text-5xl font-semibold leading-[1.02] text-foreground sm:text-6xl lg:text-7xl"
               >
-                {profile.name}
+                {profile.heroGreeting}
               </h1>
               <p className="mt-5 max-w-[21rem] text-2xl font-semibold leading-tight text-foreground sm:max-w-4xl sm:text-3xl lg:text-4xl">
                 {profile.headline}
@@ -412,7 +596,7 @@ export default function Home() {
                     aria-label="View Wang Jiawei's selected engineering projects"
                     className="w-full sm:w-auto"
                   >
-                    View projects
+                    View Projects
                   </LinkButton>
                 </li>
                 <li className="w-full sm:w-auto">
@@ -420,12 +604,32 @@ export default function Home() {
                 </li>
                 <li className="w-full sm:w-auto">
                   <LinkButton
-                    href="#contact"
-                    aria-label="Contact Wang Jiawei"
+                    href={profile.github}
+                    aria-label="Open Wang Jiawei's GitHub profile"
                     variant="quiet"
                     className="w-full sm:w-auto border-line bg-panel/78"
                   >
-                    Contact me
+                    GitHub
+                  </LinkButton>
+                </li>
+                <li className="w-full sm:w-auto">
+                  <LinkButton
+                    href={profile.linkedin}
+                    aria-label="Open Wang Jiawei's LinkedIn profile"
+                    variant="quiet"
+                    className="w-full sm:w-auto border-line bg-panel/78"
+                  >
+                    LinkedIn
+                  </LinkButton>
+                </li>
+                <li className="w-full sm:w-auto">
+                  <LinkButton
+                    href={`mailto:${profile.email}`}
+                    aria-label={`Email ${profile.name}`}
+                    variant="quiet"
+                    className="w-full sm:w-auto border-line bg-panel/78"
+                  >
+                    Email
                   </LinkButton>
                 </li>
               </ul>
@@ -444,15 +648,16 @@ export default function Home() {
           <div className="relative mx-auto max-w-7xl px-5 md:px-8 lg:px-10">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <SectionHeading
-                eyebrow="Selected work"
-                title="Proof-oriented project cards for practical systems."
-                intro="A recruiter-friendly view of AI web, FPGA, and robotics work: what was built, the contribution, the hardest technical surface, and the links that prove it."
+                eyebrow="Selected Work"
+                title="Projects across AI web apps, embedded systems, FPGA design, and robotics."
+                intro="Each project highlights what I built, the constraints I worked within, and the technical decisions behind the final system."
                 id="projects-title"
                 number="01"
               />
               <p className="max-w-sm border-l border-line pl-4 text-sm leading-7 text-muted">
-                Public links appear only where they exist. Private or visual
-                assets are marked honestly with compact case-study previews.
+                I’m adding real screenshots and hardware photos as they become
+                safe to share. Until then, the cards keep space for proof
+                without filling it with stock images.
               </p>
             </div>
 
@@ -606,7 +811,7 @@ export default function Home() {
                   id="contact-title"
                   className="mt-3 text-3xl font-semibold md:text-4xl"
                 >
-                  Let us build useful systems.
+                  Let’s build useful systems.
                 </h2>
                 <p className="mt-4 max-w-2xl text-base leading-8 text-background/75 md:text-lg">
                   {profile.contactIntro}
@@ -618,7 +823,7 @@ export default function Home() {
                   aria-label={`Email ${profile.name}`}
                   className="border-background/20 bg-background text-foreground hover:border-accent hover:bg-accent hover:text-white dark:text-foreground"
                 >
-                  Email
+                  {profile.email}
                 </LinkButton>
                 <LinkButton
                   href={profile.github}
@@ -636,12 +841,10 @@ export default function Home() {
                 >
                   LinkedIn
                 </LinkButton>
-                {profile.resumeHref ? (
-                  <ResumeCta
-                    variant="quiet"
-                    className="border-background/25 text-background hover:border-background/60 hover:bg-background/10"
-                  />
-                ) : null}
+                <ResumeCta
+                  variant="quiet"
+                  className="border-background/25 text-background hover:border-background/60 hover:bg-background/10"
+                />
               </div>
             </div>
           </div>
